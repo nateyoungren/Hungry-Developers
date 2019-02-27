@@ -14,13 +14,9 @@ class Spoon {
     
     func pickUp() {
         lock.lock()
-        spoon.remove(at: 0)
-        lock.unlock()
     }
     
     func putDown() {
-        lock.lock()
-        spoon.insert(spoonCopy[0], at: 0)
         lock.unlock()
     }
 }
