@@ -3,13 +3,10 @@ import Foundation
 class Spoon {
     
     private var lock = NSLock()
-    
     var spoon: [Int]
-    var spoonCopy: [Int]
     
     init(spoon: [Int]) {
         self.spoon = spoon
-        self.spoonCopy = spoon
     }
     
     func pickUp() {
@@ -26,8 +23,6 @@ class Developer {
     let name: String
     let leftSpoon: Spoon
     let rightSpoon: Spoon
-    
-    private var lock = NSLock()
     
     init(name: String, leftSpoon: Spoon, rightSpoon: Spoon) {
         self.name = name
@@ -53,7 +48,7 @@ class Developer {
     
     func eat() {
         print("\(name) is eating")
-        usleep(1000)
+        usleep(4000)
         rightSpoon.putDown()
         leftSpoon.putDown()
     }
