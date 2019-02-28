@@ -4,6 +4,7 @@ class Spoon {
     
     private var lock = NSLock()
     var spoon: [Int]
+    var inHand = false
     
     init(spoon: [Int]) {
         self.spoon = spoon
@@ -11,9 +12,11 @@ class Spoon {
     
     func pickUp() {
         lock.lock()
+        inHand = true
     }
     
     func putDown() {
+        inHand = false
         lock.unlock()
     }
 }
@@ -34,8 +37,10 @@ class Developer {
         print("\(name) is thinking")
         if leftSpoon.spoon[0] < rightSpoon.spoon[0] {
             leftSpoon.pickUp()
+            rightSpoon.pickUp()
         } else {
             rightSpoon.pickUp()
+            leftSpoon.pickUp()
         }
     }
     
@@ -48,7 +53,7 @@ class Developer {
     
     func eat() {
         print("\(name) is eating")
-        usleep(4000)
+        usleep(UInt32.random(in: 0...5000))
         rightSpoon.putDown()
         leftSpoon.putDown()
     }
